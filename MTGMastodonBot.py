@@ -32,14 +32,15 @@ mtg_set = card['set_name']
 with open('image.jpg', 'wb') as out_file:
     copyfileobj(get(img_url, stream = True).raw, out_file)
 
+# Removing weird or unusable characters for hashtags
+special_characters=["$", "'","`","%","&","(",")",",",":","?","!","@",",",".","*"]
+for i in special_characters:
+    hTitle = mtg_title.replace(i,"")
+    hSet = mtg_set.replace(i,"")
+    hArtist = mtg_artist.replace(i,"")
+
 # Set the Mastodon post information
-media = mastodon.media_post("image.jpg","size:'372x520'", description="Card Name: " + mtg_title + "\n" + "Set: " + mtg_set + "\n" + "Description: "  + flavor + "\n" + "Artist: " + mtg_artist)
+media = mastodon.media_post("image.jpg", description="Card Name: " + mtg_title + "\n" + "Set: " + mtg_set + "\n" + "Description: "  + flavor + "\n" + "Artist: " + mtg_artist)
 
-# Print Text
-print (mtg_title)
-print (mtg_set)
-print (img_url)
-print (flavor)
-
-
-mastodon.status_post("#magicthegathering" + " " + "#mtg" + " " + "#" + mtg_title.replace(" ", "") + " " + "#" + mtg_set.replace(" ","") + " " + "#" + mtg_artist.replace(" ",""),media_ids=media)
+# Post the Toot
+mastodon.status_post("#magicthegathering" + " " + "#mtg" + " " + "#" + hTitle.replace(" ", "") + " " + "#" + hSet.replace(" ", "") + " " + "#" + hArtist.replace(" ", ""),media_ids=media)

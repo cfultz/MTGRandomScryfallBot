@@ -33,7 +33,7 @@ with open('image.jpg', 'wb') as out_file:
     copyfileobj(get(img_url, stream = True).raw, out_file)
 
 # Removing weird or unusable characters for hashtags
-special_characters=["$", "'","`","%","&","(",")",",",":","?","!","@",",",".","*"]
+special_characters=["$", "'","`","%","&","(",")",",",":","?","!","@",",",".","*","-"]
 for i in special_characters:
     hTitle = mtg_title.replace(i,"")
     hSet = mtg_set.replace(i,"")
@@ -43,4 +43,4 @@ for i in special_characters:
 media = mastodon.media_post("image.jpg", description="Card Name: " + mtg_title + "\n" + "Set: " + mtg_set + "\n" + "Description: "  + flavor + "\n" + "Artist: " + mtg_artist)
 
 # Post the Toot
-mastodon.status_post("#magicthegathering" + " " + "#mtg" + " " + "#" + hTitle.replace(" ", "") + " " + "#" + hSet.replace(" ", "") + " " + "#" + hArtist.replace(" ", ""),media_ids=media)
+mastodon.status_post("#magicthegathering" + " " + "#mtg" + " " + "#" + hTitle.replace(" ", "") + " " + "#" + hArtist.replace(" ", ""),media_ids=media)

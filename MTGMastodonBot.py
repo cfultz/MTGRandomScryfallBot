@@ -25,7 +25,7 @@ mastodon = Mastodon(
 card = loads(get(f"https://api.scryfall.com/cards/{setname}/{cardid}").text)
 
 # This is the actual random card: 
- card = loads(get(f"https://api.scryfall.com/cards/random?format=image.json").text)
+card = loads(get(f"https://api.scryfall.com/cards/random?format=image.json").text)
 
 # Get the image URL
 img_url = card['image_uris']['large']

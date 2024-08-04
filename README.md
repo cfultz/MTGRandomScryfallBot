@@ -6,12 +6,19 @@ The is a Mastodon bot that pulls a random Magic: The Gathering card from Scryfal
 
 ## Requirments
 - Mastodon.py (pip install Mastodon)
+- python-dotenv (pip install python-dotenv)
+
 
 ## How to Use
  
 - Clone repository
-- Create file called ``token.secret`` and place Mastodon Access Token inside
-- Change ``api_url_endpoint`` in ``MTGMastodonBot.py`` to your instance URL
+- Create file called ``.env`` and place Mastodon Access Token and API URL inside
+   ```
+   token = RANDOMTOKENHERE
+   url = MASTODONURLHERE
+   ```
+
+
 - Save and run the bot. eg: ``python MTGMastodonBot.py``
 
 ## TODO
